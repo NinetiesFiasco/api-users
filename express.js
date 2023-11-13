@@ -1,12 +1,13 @@
 const express = require('express')
+const router = require('./router')
+require('./mongoose')
 
 const app = express()
-const port = process.env.PORT || 3504
+const PORT = process.env.PORT || 3504
 
-app.get('/', (req, res) => {
-  res.send('Hi fromAPI Users')
-})
+app.use(express.json())
+app.use('/', router)
 
-app.listen(port, async () => {
-  console.log(`Example app listening on port ${port}`) 
+app.listen(PORT, async () => {
+  console.log(`Example app listening on port ${PORT} environment: ${process.env.NODE_ENV}`)
 })
